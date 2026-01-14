@@ -1,0 +1,38 @@
+<div class="book-detail-container">
+  <button class="back-button" (click)="goBack()">← Retour à la liste</button>
+
+  <div *ngIf="loading" class="loader">Chargement...</div>
+
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+
+  <div *ngIf="!loading && book" class="book-container">
+    <div class="cover">
+      <img *ngIf="book.covers?.[0]"
+           [src]="'https://covers.openlibrary.org/b/id/' + book.covers[0] + '-L.jpg'"
+           alt="Book cover">
+      <div *ngIf="!book.covers?.[0]" class="no-cover">Pas de couverture</div>
+    </div>
+    <div class="details">
+      <h1>{{ book.title }}</h1>
+      <h2 *ngIf="book.subtitle">{{ book.subtitle }}</h2>
+      <p *ngIf="book.first_publish_date" class="publication-date">
+        <span>Année d'édition:</span> {{ book.first_publish_date }}
+      </p>
+      <div *ngIf="book.description" class="description">
+        <span>Description:</span>
+        <p>{{ book.description.value || book.description }}</p>
+      </div>
+      <div *ngIf="book.author_name" class="authors">
+        <span>Auteurs:</span>
+        <p *ngFor="let author of book.author_name">{{ author }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && !book && !error" class="no-book">
+    Livre introuvable.
+  </div>
+</div>
+

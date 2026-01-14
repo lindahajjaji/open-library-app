@@ -1,0 +1,66 @@
+/*.search {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 20px;
+}
+input, button {
+  padding: 8px;
+}
+button {
+  cursor: pointer;
+}*/
+/* Conteneur global de la barre de recherche */
+.search {
+  display: flex;                 /* Affiche les éléments en ligne */
+  gap: 10px;                     /* Espace entre les inputs et boutons */
+  justify-content: center;       /* Centre horizontalement */
+  align-items: center;           /* Centre verticalement */
+  margin: 20px 0;                /* Marge en haut et en bas */
+}
+
+/* Style des champs input */
+.search input[type="text"],
+.search input[type="number"] {
+  padding: 8px 12px;             /* Padding intérieur */
+  border: 1px solid #ccc;        /* Bordure grise claire */
+  border-radius: 5px;            /* Coins arrondis */
+  width: 200px;                   /* Largeur fixe */
+  font-size: 14px;               /* Taille de texte */
+  outline: none;                 /* Supprime le contour par défaut */
+  transition: border-color 0.2s; /* Animation bordure au focus */
+}
+
+/* Effet au focus sur input */
+.search input:focus {
+  border-color: #3498db;         /* Bleu clair */
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+/* Style des boutons */
+.search button {
+  padding: 8px 16px;
+  border: none;
+  background-color: pink;      /* Bleu */
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+/* Effet hover sur les boutons */
+.search button:hover {
+  background-color: pink;      /* Bleu plus foncé */
+}
+
+/* Responsive : sur petits écrans, empiler les éléments */
+@media (max-width: 500px) {
+  .search {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .search input {
+    width: 100%;
+  }
+}

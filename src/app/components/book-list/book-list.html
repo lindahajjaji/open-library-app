@@ -1,0 +1,40 @@
+<div class="book-list-container">
+  <!-- État de chargement -->
+  <div *ngIf="loading" class="loader">
+    <div class="spinner"></div>
+    <p>Chargement des livres...</p>
+  </div>
+
+  <!-- Affichage d'erreur -->
+  <div *ngIf="error" class="error-message">
+    <p>{{ error }}</p>
+    <button (click)="retry()" class="retry-button">Réessayer</button>
+  </div>
+
+  <!-- Liste des livres -->
+  <div class="book-list" *ngIf="!loading && booksList.length > 0">
+    <div class="book-card" *ngFor="let book of booksList" (click)="goToDetails(book)" role="button" tabindex="0">
+      <div class="book-image-container">
+        <img *ngIf="book.cover_id"
+             [src]="'https://covers.openlibrary.org/b/id/' + book.cover_id + '-M.jpg'"
+             alt="Couverture de {{ book.title }}"
+             class="book-image">
+        <div *ngIf="!book.cover_id" class="no-image">Pas de couverture</div>
+      </div>
+      <div class="book-details">
+        <h2 title="{{ book.title }}">{{ book.title }}</h2>
+        <p *ngIf="book.first_publish_year" class="year">
+          <span>Année:</span> {{ book.first_publish_year }}
+        </p>
+        <p *ngIf="book.author_name" class="authors">
+          <span>Auteurs:</span> {{ book.author_name.slice(0, 2).join(', ') }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Aucun livre trouvé -->
+  <div *ngIf="!loading && booksList.length === 0 && !error" class="no-books">
+    <p>Aucun livre trouvé.</p>
+  </div>
+</div>
